@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Togepi 💕</title>
+<title>The Big Question</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
 <style>
@@ -12,26 +12,28 @@ body{
   opacity:0;transition:opacity .8s ease;
 }
 body.loaded{opacity:1;}
-.card{background:rgba(255,255,255,.92);padding:50px 60px;border-radius:30px;text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.12);}
+.card{background:white;padding:50px;border-radius:30px;text-align:center;}
 h1{font-family:Playfair Display;color:#ff7a9c;}
-a{display:inline-block;margin-top:25px;padding:14px 28px;border-radius:20px;
-background:#ff9eb3;color:white;text-decoration:none;font-size:18px;}
+button{padding:14px 28px;border-radius:20px;border:none;font-size:18px;margin:10px;}
+#yes{background:#ff9eb3;color:white;}
+#no{background:#ddd;animation:shake 1.4s infinite;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}
+50%{transform:translateX(3px)}75%{transform:translateX(-3px)}}
 </style>
 </head>
 <body>
 <div class="card">
-<h1>Togepi 🌸</h1>
-<p>Are you ready for a little Valentine adventure?</p>
-<a href="love.html" class="link">Start 💕</a>
+<h1>Will you be my Valentine? 💕</h1>
+<button id="yes" class="link" data-href="letter.html">Yes</button>
+<button id="no">No</button>
 </div>
 
 <script>
 window.onload=()=>document.body.classList.add("loaded");
-document.querySelectorAll(".link").forEach(link=>{
-  link.addEventListener("click",e=>{
-    e.preventDefault();
-    const href=link.getAttribute("href");
+
+document.querySelectorAll(".link").forEach(btn=>{
+  btn.addEventListener("click",e=>{
+    const href=btn.dataset.href;
     document.body.classList.remove("loaded");
     setTimeout(()=>location.href=href,800);
   });
